@@ -1,0 +1,37 @@
+###服务端口号
+server:
+  port: 10000
+
+#eureka安全模块
+security:
+    basic:
+      enabled: true
+spring:
+  security:
+    user:
+      name: xiangjiao
+      password: bunana
+      
+  application: #给定集群时的别名称
+    name: eureka-server
+    
+###eureka 基本信息配置
+eureka:
+  instance:
+    ###注册到eurekaip地址
+    hostname: 127.0.0.1
+  client:
+    serviceUrl:
+      #分别注册至其他的注册中心上，所以这里的端口不是自己的端口信息！！
+      #如果集群有多个(假如3个，此处连接采取","拼接)
+      defaultZone: http://xiangjiao:bunana@localhost:11000/eureka/,http://xiangjiao:bunana@localhost:12000/eureka/
+      #defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+    #取消向eureka注册中心注册(自己本身就是注册中心，自己不需要注册自己)
+    register-with-eureka: true
+    #取消从注册中心上获取注册信息
+    fetch-registry: true
+    
+  server:
+  # 测试时关闭自我保护机制，保证不可用服务及时踢出
+    enable-self-preservation: false #关闭自我防护机制
+    eviction-interval-timer-in-ms: 2000 #服务宕机后，从发现到踢出之间的间隔时间(默认60*1000)
