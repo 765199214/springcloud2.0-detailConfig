@@ -1,0 +1,13 @@
+###服务启动端口号
+server:
+  port: 10001
+###服务名称(服务注册到eureka名称)  
+spring:
+    application:
+        name: app-bunana-consumer
+
+    
+app-bunana-product: 
+   ribbon: 
+      listOfServers: localhost:10010,localhost:10011
+      NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
