@@ -8,6 +8,8 @@ import org.springframework.web.client.RestTemplate;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 
+import cn.linkpower.uo.ServiceCommand;
+
 @RestController
 public class TestController {
 	
@@ -24,5 +26,12 @@ public class TestController {
 	
 	public String testfallback(@RequestParam String name){
 		return "请求异常，请联系开发者";
+	}
+	
+	@RequestMapping("/test2")
+	public String test2(@RequestParam String name){
+		//这里的key可以任意取名，只是这种方式必须传递这个参数而已
+		ServiceCommand serviceCommand = new ServiceCommand("random", restTemplate, name);
+		return serviceCommand.execute();
 	}
 }
