@@ -1,0 +1,22 @@
+###服务端口号
+server:
+  port: 10000
+
+  
+###eureka 基本信息配置
+eureka:
+  instance:
+    ###注册到eurekaip地址
+    hostname: 127.0.0.1
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:10000/eureka/
+    #取消向eureka注册中心注册(自己本身就是注册中心，自己不需要注册自己)
+    register-with-eureka: false
+    #取消从注册中心上获取注册信息
+    fetch-registry: false
+    
+  server:
+  # 测试时关闭自我保护机制，保证不可用服务及时踢出
+    enable-self-preservation: false #关闭自我防护机制
+    #eviction-interval-timer-in-ms: 2000 #服务宕机后，从发现到踢出之间的间隔时间(默认60*1000)
