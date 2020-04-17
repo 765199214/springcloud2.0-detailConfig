@@ -1,0 +1,3 @@
+### 添加加解密key(不能被覆盖和修改，所以必须配置在bootstrap.yml中)
+encrypt:
+  key: xiangjiaobunana

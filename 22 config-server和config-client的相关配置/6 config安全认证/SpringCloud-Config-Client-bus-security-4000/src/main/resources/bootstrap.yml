@@ -1,0 +1,22 @@
+## config client 相关配置
+###服务名称(服务注册到eureka名称)  
+spring:
+  application:
+    name: config-client  ## 对应 config server 所获取到的配置文件的{application}
+  cloud: 
+    config:
+      uri: http://localhost:3000/   ## config server 的地址
+      username: xiangjiao  ## 安全认证账号
+      password: bunana  ## 安全认证密码
+      profile: dev  ## profile 对应config server 所获取到的配置文件中的 {profile} 
+      label: master  ## 指定的git 仓库的分支，对应 config server 中的{label} 
+      
+  ## 配置rabbitmq的连接属性
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: xiangjiao
+    password: bunana
+    virtual-host: /springcloud
+      
+      
