@@ -1,0 +1,44 @@
+## config client 相关配置
+###服务名称(服务注册到eureka名称)  
+spring:
+  application:
+    name: config-client  ## 对应 config server 所获取到的配置文件的{application}
+  cloud: 
+    config:
+      #uri: http://localhost:3000/   ## config server 的地址
+      username: xiangjiao  ## 安全认证账号
+      password: bunana  ## 安全认证密码
+      profile: dev  ## profile 对应config server 所获取到的配置文件中的 {profile} 
+      label: master  ## 指定的git 仓库的分支，对应 config server 中的{label} 
+      discovery:
+        enabled: true  # 表示使用服务发现组件中的Config Server，而不自己指定Config Server的uri，默认false
+        service-id: springcloud-config-service-bus  # 指定Config Server在服务发现中的serviceId，默认是configserver
+      
+  ## 配置rabbitmq的连接属性
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: xiangjiao
+    password: bunana
+    virtual-host: /springcloud
+
+
+      
+###服务注册到eureka地址
+eureka:
+  client:
+    service-url:
+           defaultZone: http://localhost:10000/eureka/
+       
+#  #自己是服务，需要注册至服务注册中心上
+#    register-with-eureka: true
+#  #如果需要通信，必须运行此服务可以拉去别的服务的注册信息
+#    fetch-registry: true
+#    
+#  instance:
+#    prefer-ip-address: true
+#    instance-id: ${spring.application.name}:${spring.application.instance_id:${server.port}}
+#    #Eureka客户端向服务端发送心跳的时间间隔，单位为秒（客户端告诉服务端自己会按照该规则），默认30
+#    lease-renewal-interval-in-seconds: 5
+#    #Eureka服务端在收到最后一次心跳之后等待的时间上限，单位为秒，超过则剔除（客户端告诉服务端按照此规则等待自己），默认90
+#    lease-expiration-duration-in-seconds: 7     

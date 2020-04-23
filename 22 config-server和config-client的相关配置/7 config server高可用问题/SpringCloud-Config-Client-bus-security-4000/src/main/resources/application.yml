@@ -1,0 +1,8 @@
+###服务启动端口号
+server:
+  port: 4000
+  
+management.security.enabled: false  #关掉安全认证
+#开放所有页面节点  默认只开启了health、info两个节点
+management.endpoints.web.exposure.include: refresh,info,health
+
