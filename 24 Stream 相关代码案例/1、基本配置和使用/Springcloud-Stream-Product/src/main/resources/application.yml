@@ -1,0 +1,23 @@
+server:
+  port: 8000
+  
+spring:
+  application:
+    name: spring-cloud-stream-product
+  cloud:
+    stream:
+      binders: # 配置绑定的rabbitmq的服务信息(是一个Map，可以有多个)
+        defaultRabbit: # 标识定义名称，只是一个别名
+          type: rabbit  # 组件类型
+          environment:  # 配置rabbitmq的环境参数
+            spring:
+              rabbitmq:
+               host: localhost
+               port: 5672
+               username: guest
+               password: guest
+      bindings: # 整合处理(是一个Map，可以有多个)
+        output: # 通道的名称
+          destination: studyExchange  # exchange的名称
+          content-type: application/json  #消息类型参数
+          binder: defaultRabbit  # 和binders中定义的名称保持一致
